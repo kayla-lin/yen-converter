@@ -1,11 +1,6 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/ZsO0TXkZ0Kd
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import {
 	Card,
 	CardHeader,
@@ -22,14 +17,19 @@ import { useConversionRateStore } from '@/store/rates-store'
 import { Separator } from './ui/separator'
 
 export function Converter() {
-	const [yenAmount, setYenAmount] = useState(0)
-	const [usdAmount, setUsdAmount] = useState(0)
+	const [yenAmount, setYenAmount] = useState('0')
+	const [usdAmount, setUsdAmount] = useState('0')
 	const { yenRate, lastUpdated } = useConversionRateStore()
+	const yenInputRef = useRef<HTMLInputElement | null>(null)
 
 	useCheckRate()
 
-	const handleConvert = () => {
-		setUsdAmount(yenAmount * yenRate)
+	const onClearConverter = () => {
+		setUsdAmount('0')
+		setYenAmount('0')
+		if (yenInputRef.current) {
+			yenInputRef?.current?.focus()
+		}
 	}
 
 	return (
@@ -45,11 +45,23 @@ export function Converter() {
 							<Label htmlFor='yen'>Japanese Yen (JPY)</Label>
 							<Input
 								min={0}
+								ref={yenInputRef}
 								id='yen'
 								type='number'
 								placeholder='Enter Yen amount'
 								value={yenAmount}
-								onChange={(e) => setYenAmount(parseFloat(e.target.value))}
+								onChange={(e) => {
+									const value = e.target.value
+									setYenAmount(value)
+
+									const yen = parseFloat(value)
+									const convertedUSD = yen * yenRate
+
+									setUsdAmount(convertedUSD.toFixed(2))
+									if (value.length === 0) {
+										setUsdAmount('0')
+									}
+								}}
 							/>
 						</div>
 						<div className='space-y-2'>
@@ -59,23 +71,34 @@ export function Converter() {
 								id='usd'
 								type='number'
 								placeholder='Converted USD amount'
-								value={usdAmount.toFixed(2)}
-								readOnly
+								value={usdAmount}
+								onChange={(e) => {
+									const value = e.target.value
+									setUsdAmount(value)
+
+									const usd = parseFloat(value)
+									const convertedYen = usd / yenRate
+									setYenAmount(convertedYen.toFixed(2))
+
+									if (value.length === 0) {
+										setYenAmount('0')
+									}
+								}}
 							/>
 						</div>
 					</div>
 				</CardContent>
 				<CardFooter className='flex flex-col gap-4'>
-					<Button onClick={handleConvert} className='w-full'>
-						Convert
+					<Button onClick={onClearConverter} className='w-full'>
+						Clear
 					</Button>
 					<Separator />
 					<div className='flex flex-col w-full gap-1'>
-						<div className='font-medium'>1 Japanese Yen equals</div>
+						<div className='font-semibold text-sm'>1 Japanese Yen equals</div>
 						<div className='font-semibold text-2xl'>
 							{yenRate.toFixed(4)} USD
 						</div>
-						<div className='text-sm flex items-center justify-between text-muted-foreground'>
+						<div className='text-xs flex items-center justify-between text-muted-foreground'>
 							Last Updated{' '}
 							{lastUpdated && new Date(lastUpdated).toLocaleString('en-US')}
 						</div>
