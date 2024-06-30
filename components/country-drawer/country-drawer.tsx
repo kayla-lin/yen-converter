@@ -70,9 +70,9 @@ export function CountryDrawer() {
 							Select currency to compare to Japanese Yen price
 						</DrawerDescription>
 					</DrawerHeader>
-					<div className='flex flex-col space-y-2 p-2'>
+					<div className='flex flex-col space-y-8 p-2'>
 						<Input
-							className='text-base'
+							className='text-lg'
 							placeholder='Search for currency...'
 							value={countryQuery}
 							onChange={(e) => {
