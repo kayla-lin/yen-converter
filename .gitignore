@@ -7,3 +7,5 @@ node_modules
 # Generated via next-pwa
 **/public/workbox**
 **/public/sw**
+
+.DS_Store
