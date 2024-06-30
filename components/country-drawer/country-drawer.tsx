@@ -63,14 +63,14 @@ export function CountryDrawer() {
 				{selectedCountry}
 			</Button>
 			<DrawerContent>
-				<div className='mx-auto w-full max-w-sm'>
+				<div className='mx-auto w-[95%] max-w-sm'>
 					<DrawerHeader>
 						<DrawerTitle>Convert to Currency</DrawerTitle>
 						<DrawerDescription>
 							Select currency to compare to Japanese Yen price
 						</DrawerDescription>
 					</DrawerHeader>
-					<div className='flex flex-col space-y-2'>
+					<div className='flex flex-col space-y-2 p-2'>
 						<Input
 							placeholder='Search for currency...'
 							value={countryQuery}
