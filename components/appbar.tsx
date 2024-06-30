@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import { CountrySelect } from './country-select/country-select'
 
 const links = [
 	{ label: 'Story', href: '/story' },
@@ -17,6 +18,7 @@ const Appbar = () => {
 						<h1 className='font-medium'>Yenny</h1>
 					</Link>
 					<nav className='flex items-center space-x-6'>
+						<CountrySelect />
 						<div className='hidden sm:block'>
 							<div className='flex items-center space-x-6'>
 								{/* {links.map(({ label, href }) => (
