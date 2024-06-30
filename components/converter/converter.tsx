@@ -71,6 +71,7 @@ export function Converter() {
 						<div className='space-y-2'>
 							<Label htmlFor='yen'>Japanese Yen (JPY)</Label>
 							<Input
+								className='text-base'
 								min={0}
 								ref={yenInputRef}
 								id='yen'
@@ -105,6 +106,7 @@ export function Converter() {
 							<Label htmlFor='currency-convert-input'>{country}</Label>
 							<Input
 								min={0}
+								className='text-base'
 								id='currency-convert-input'
 								type='number'
 								placeholder={`Converted ${country} amount`}

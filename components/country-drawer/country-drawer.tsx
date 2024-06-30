@@ -72,6 +72,7 @@ export function CountryDrawer() {
 					</DrawerHeader>
 					<div className='flex flex-col space-y-2 p-2'>
 						<Input
+							className='text-base'
 							placeholder='Search for currency...'
 							value={countryQuery}
 							onChange={(e) => {
