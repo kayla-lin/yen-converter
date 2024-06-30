@@ -1,24 +1,30 @@
 import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import '@/styles/globals.css'
-import { Inter as FontSans } from 'next/font/google'
-import { cn } from '@/lib/utils'
+import { Inter } from '@next/font/google'
 
-const fontSans = FontSans({
+const inter = Inter({
 	subsets: ['latin'],
-	variable: '--font-sans',
+	variable: '--font-inter', // <--------- 👈
 })
-
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<main className={cn('font-sans antialiased', fontSans.variable)}>
+		<>
+			<style jsx global>{`
+				:root {
+					--font-inter: ${inter.style.fontFamily};
+				}
+			`}</style>
+
 			<ThemeProvider
 				attribute='class'
 				defaultTheme='system'
 				disableTransitionOnChange
 			>
-				<Component {...pageProps} />
+				<main className={`${inter.variable}`}>
+					<Component {...pageProps} />
+				</main>
 			</ThemeProvider>
-		</main>
+		</>
 	)
 }

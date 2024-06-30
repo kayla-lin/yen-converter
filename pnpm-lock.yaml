@@ -8,6 +8,9 @@ dependencies:
   '@hookform/resolvers':
     specifier: ^3.6.0
     version: 3.6.0(react-hook-form@7.52.0)
+  '@next/font':
+    specifier: ^14.2.4
+    version: 14.2.4(next@14.1.1)
   '@radix-ui/react-accordion':
     specifier: ^1.1.2
     version: 1.1.2(@types/react@18.2.28)(react-dom@18.2.0)(react@18.2.0)
@@ -107,6 +110,9 @@ dependencies:
   embla-carousel-react:
     specifier: ^8.1.5
     version: 8.1.5(react@18.2.0)
+  google:
+    specifier: link:@next/font/google
+    version: link:@next/font/google
   input-otp:
     specifier: ^1.2.4
     version: 1.2.4(react-dom@18.2.0)(react@18.2.0)
@@ -1512,6 +1518,14 @@ packages:
     dependencies:
       glob: 7.1.7
     dev: true
+
+  /@next/font@14.2.4(next@14.1.1):
+    resolution: {integrity: sha512-RPB5kQk8jo8ZeiuryobDuV58FxB3VAiN+ckZ0zPKRl/4YLTSSekMUCwpoqav6y/bL2+hJCWjN8RMgjrBHT6r/g==}
+    peerDependencies:
+      next: '*'
+    dependencies:
+      next: 14.1.1(@babel/core@7.23.0)(react-dom@18.2.0)(react@18.2.0)
+    dev: false
 
   /@next/swc-darwin-arm64@14.1.1:
     resolution: {integrity: sha512-yDjSFKQKTIjyT7cFv+DqQfW5jsD+tVxXTckSe1KIouKk75t1qZmj/mV3wzdmFb0XHVGtyRjDMulfVG8uCKemOQ==}
