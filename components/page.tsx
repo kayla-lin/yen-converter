@@ -23,7 +23,7 @@ const Page = ({ title, children }: Props) => (
 		) : null}
 		<div className={cn('font-sans antialiased', fontSans.variable)}>
 			<Appbar />
-			<main
+			<div
 				/**
 				 * Padding top = `appbar` height
 				 * Padding bottom = `bottom-nav` height
@@ -31,7 +31,7 @@ const Page = ({ title, children }: Props) => (
 				className='min-h-screen bg-background mx-auto max-w-screen-md pt-20 pb-16 px-safe sm:pb-0'
 			>
 				<div className='p-6'>{children}</div>
-			</main>
+			</div>
 		</div>
 
 		<BottomNav />

@@ -67,6 +67,7 @@ export function CountrySelect() {
 						<CommandGroup>
 							{countries.map((c) => (
 								<CommandItem
+									className='font-sans'
 									key={c.country}
 									value={c.country}
 									onSelect={(currentValue) => {

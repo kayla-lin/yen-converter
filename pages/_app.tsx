@@ -11,12 +11,14 @@ const fontSans = FontSans({
 
 export default function App({ Component, pageProps }: AppProps) {
 	return (
-		<ThemeProvider
-			attribute='class'
-			defaultTheme='system'
-			disableTransitionOnChange
-		>
-			<Component {...pageProps} />
-		</ThemeProvider>
+		<main className={cn('font-sans antialiased', fontSans.variable)}>
+			<ThemeProvider
+				attribute='class'
+				defaultTheme='system'
+				disableTransitionOnChange
+			>
+				<Component {...pageProps} />
+			</ThemeProvider>
+		</main>
 	)
 }

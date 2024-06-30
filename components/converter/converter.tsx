@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import {
 	Card,
 	CardHeader,
@@ -20,17 +20,35 @@ import { Skeleton } from '../ui/skeleton'
 
 export function Converter() {
 	const [yenAmount, setYenAmount] = useState('0')
+
 	const [localizedAmount, setLocalizedAmount] = useState('0')
+
 	const { yenRate, lastUpdated, country } = useConversionRateStore()
+
 	const yenInputRef = useRef<HTMLInputElement | null>(null)
+
 	const { isRatesLoading } = useCheckRate()
+
+	function resetCursor() {
+		if (yenInputRef.current) {
+			yenInputRef.current.type = 'text'
+			yenInputRef.current.selectionStart = 1
+			yenInputRef.current.selectionEnd = 1
+			yenInputRef.current.type = 'number'
+		}
+	}
+
+	useEffect(() => {
+		if (!isRatesLoading) {
+			yenInputRef?.current?.focus()
+			resetCursor()
+		}
+	}, [isRatesLoading])
 
 	const onClearConverter = () => {
 		setLocalizedAmount('0')
 		setYenAmount('0')
-		if (yenInputRef.current) {
-			yenInputRef?.current?.focus()
-		}
+		resetCursor()
 	}
 
 	if (isRatesLoading) {
