@@ -46,7 +46,7 @@ export function Converter() {
 			<Card className='md:w-[400px] w-[100%]'>
 				<CardHeader>
 					<CardTitle>Currency Converter</CardTitle>
-					<CardDescription>Convert Japanese Yen to US Dollars</CardDescription>
+					<CardDescription>Convert Japanese Yen to {country}</CardDescription>
 				</CardHeader>
 				<CardContent className='space-y-4'>
 					<div className='grid grid-cols-2 gap-4'>
@@ -84,7 +84,7 @@ export function Converter() {
 							/>
 						</div>
 						<div className='space-y-2'>
-							<Label htmlFor='currency-convert-input'>{country} Dollars</Label>
+							<Label htmlFor='currency-convert-input'>{country}</Label>
 							<Input
 								min={0}
 								id='currency-convert-input'
