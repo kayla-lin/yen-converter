@@ -18,7 +18,7 @@ const Appbar = () => {
 				<div className='mx-auto flex h-20 max-w-screen-md items-center justify-between px-6'>
 					<Link href='/' className='flex space-x-2 items-center'>
 						<YennyLogo height={20} width='auto' />
-						{/* <h1 className='font-bold'>Yenny</h1> */}
+						<h1 className='font-bold'>Yenny</h1>
 					</Link>
 					<nav className='flex items-center space-x-6'>
 						<CountryDrawer />
