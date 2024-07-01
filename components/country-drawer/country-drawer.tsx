@@ -69,7 +69,7 @@ export function CountryDrawer() {
 			>
 				{selectedCountry}
 			</Button>
-			<DialogContent>
+			<DialogContent className='sm:h-auto h-[100svh]'>
 				<div className='mx-auto w-[95%] max-w-sm'>
 					<DialogHeader>
 						<DialogTitle>Convert to Currency</DialogTitle>
@@ -77,7 +77,7 @@ export function CountryDrawer() {
 							Select currency to compare to Japanese Yen price
 						</DialogDescription>
 					</DialogHeader>
-					<div className='flex flex-col space-y-2 p-2 py-4'>
+					<div className='flex flex-col space-y-4 p-2 py-4'>
 						<Input
 							className='text-lg'
 							placeholder='Search for currency...'
@@ -93,7 +93,7 @@ export function CountryDrawer() {
 						/>
 						<ul className='w-[100%]'>
 							<ScrollArea
-								className='h-96 w-[100%] rounded-md border'
+								className='sm:h-96 h-[77svh] w-[100%] rounded-md border'
 								ref={countryListContainer}
 							>
 								{filteredCountries.map((c, idx) => (
