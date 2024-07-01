@@ -14,6 +14,13 @@ import { ScrollArea } from '../ui/scroll-area'
 import { Separator } from '../ui/separator'
 import { Input } from '../ui/input'
 import { CheckIcon } from 'lucide-react'
+import {
+	Dialog,
+	DialogContent,
+	DialogDescription,
+	DialogHeader,
+	DialogTitle,
+} from '../ui/dialog'
 
 export function CountryDrawer() {
 	const { country, setCountry, validCountries } = useConversionRateStore()
@@ -47,7 +54,7 @@ export function CountryDrawer() {
 	const countryListContainer = React.useRef<HTMLDivElement | null>(null)
 
 	return (
-		<Drawer
+		<Dialog
 			open={isOpen}
 			onOpenChange={(open) => {
 				setIsOpen(open)
@@ -62,15 +69,15 @@ export function CountryDrawer() {
 			>
 				{selectedCountry}
 			</Button>
-			<DrawerContent>
+			<DialogContent>
 				<div className='mx-auto w-[95%] max-w-sm'>
-					<DrawerHeader>
-						<DrawerTitle>Convert to Currency</DrawerTitle>
-						<DrawerDescription>
+					<DialogHeader>
+						<DialogTitle>Convert to Currency</DialogTitle>
+						<DialogDescription>
 							Select currency to compare to Japanese Yen price
-						</DrawerDescription>
-					</DrawerHeader>
-					<div className='flex flex-col space-y-8 p-2'>
+						</DialogDescription>
+					</DialogHeader>
+					<div className='flex flex-col space-y-2 p-2 py-4'>
 						<Input
 							className='text-lg'
 							placeholder='Search for currency...'
@@ -110,7 +117,7 @@ export function CountryDrawer() {
 						</ul>
 					</div>
 				</div>
-			</DrawerContent>
-		</Drawer>
+			</DialogContent>
+		</Dialog>
 	)
 }
