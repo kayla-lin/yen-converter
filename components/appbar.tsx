@@ -1,8 +1,9 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { CountrySelect } from './country-select/country-select'
 import { CountryDrawer } from './country-drawer/country-drawer'
 import { YennyLogo } from './yenny-logo'
+import { useCheckRate } from './converter/use-check-rate'
+import { Skeleton } from './ui/skeleton'
 
 const links = [
 	{ label: 'Story', href: '/story' },
@@ -11,6 +12,7 @@ const links = [
 
 const Appbar = () => {
 	const router = useRouter()
+	const { isRatesLoading } = useCheckRate()
 
 	return (
 		<div className='fixed top-0 left-0 z-20 w-full  pt-safe'>
@@ -21,7 +23,7 @@ const Appbar = () => {
 						<h1 className='font-bold'>Yenny</h1>
 					</Link>
 					<nav className='flex items-center space-x-6'>
-						<CountryDrawer />
+						{isRatesLoading ? <Skeleton /> : <CountryDrawer />}
 						<div className='hidden sm:block'>
 							<div className='flex items-center space-x-6'>
 								{/* {links.map(({ label, href }) => (

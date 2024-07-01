@@ -17,6 +17,7 @@ import { useConversionRateStore } from '@/components/converter/rates-store'
 import { Separator } from '../ui/separator'
 import { Banknote } from 'lucide-react'
 import { Skeleton } from '../ui/skeleton'
+import { CountryName } from '../country-name'
 
 export function Converter() {
 	const [yenAmount, setYenAmount] = useState('0')
@@ -61,15 +62,20 @@ export function Converter() {
 
 	return (
 		<div className='flex flex-col items-center justify-center'>
-			<Card className='md:w-[400px] w-[100%]'>
+			<Card className='md:w-[400px] w-[100%] border-none'>
 				<CardHeader>
 					<CardTitle>Currency Converter</CardTitle>
-					<CardDescription>Convert Japanese Yen to {country}</CardDescription>
+					<CardDescription className='flex space-x-1'>
+						<span> Convert Japanese Yen to</span>
+						<CountryName country={country} showEmoji={false} />
+					</CardDescription>
 				</CardHeader>
 				<CardContent className='space-y-4'>
 					<div className='grid grid-cols-2 gap-4'>
 						<div className='space-y-2'>
-							<Label htmlFor='yen'>JPY</Label>
+							<Label htmlFor='yen'>
+								<CountryName country='JPY' />
+							</Label>
 							<Input
 								className='text-lg'
 								min={0}
@@ -103,7 +109,9 @@ export function Converter() {
 							/>
 						</div>
 						<div className='space-y-2'>
-							<Label htmlFor='currency-convert-input'>{country}</Label>
+							<Label htmlFor='currency-convert-input'>
+								<CountryName country={country} />
+							</Label>
 							<Input
 								min={0}
 								className='text-lg'
@@ -146,8 +154,9 @@ export function Converter() {
 					<div className='flex items-center space-x-4 rounded-md border p-4 w-full'>
 						<Banknote />
 						<div className='flex-1 space-y-1'>
-							<p className='text-sm font-medium leading-none flex gap-2 items-center'>
-								1 Japanese Yen = {yenRate.toFixed(4)} {country}
+							<p className='text-sm font-medium leading-none flex gap-1 items-center'>
+								1 Japanese Yen = {yenRate.toFixed(4)}
+								<CountryName country={country} showEmoji={false} />
 							</p>
 							<p className='text-xs text-muted-foreground'>
 								Updated{' '}

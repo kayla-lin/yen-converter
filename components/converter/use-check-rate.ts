@@ -21,7 +21,6 @@ export const useCheckRate = () => {
 			const localizedRates: CurrencyRate = rates[country.toLowerCase()]
 			const validCountries = Object.keys(rates)
 			setValidCountries(validCountries)
-
 			setYenRate(localizedRates.rate)
 			setYenRates(rates)
 		} catch (e) {

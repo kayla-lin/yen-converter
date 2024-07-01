@@ -1,14 +1,5 @@
 import * as React from 'react'
-
 import { Button } from '@/components/ui/button'
-import {
-	Drawer,
-	DrawerContent,
-	DrawerDescription,
-	DrawerHeader,
-	DrawerTitle,
-} from '@/components/ui/drawer'
-import currencyCountry from '../country-select/countries.json'
 import { useConversionRateStore } from '../converter/rates-store'
 import { ScrollArea } from '../ui/scroll-area'
 import { Separator } from '../ui/separator'
@@ -21,29 +12,17 @@ import {
 	DialogHeader,
 	DialogTitle,
 } from '../ui/dialog'
+import { CountryName } from '../country-name'
 
 export function CountryDrawer() {
 	const { country, setCountry, validCountries } = useConversionRateStore()
-
-	const countries = Object.entries(currencyCountry)
-		.map(([key, country]) => {
-			return { country: key, label: `${country} ${key.toUpperCase()}` }
-		})
-		.filter(
-			(country) =>
-				!!validCountries.find(
-					(validCountry) => validCountry === country.country.toLowerCase(),
-				),
-		)
-
-	const selectedCountry = countries.find((c) => c.country === country)?.label
 
 	const [isOpen, setIsOpen] = React.useState<boolean>(false)
 
 	const [countryQuery, setCountryQuery] = React.useState<string>('')
 
-	const filteredCountries = countries.filter((c) =>
-		c.country.toLowerCase().includes(countryQuery.toLowerCase()),
+	const filteredCountries = validCountries.filter((c) =>
+		c.toLowerCase().includes(countryQuery.toLowerCase()),
 	)
 
 	const onCloseDrawer = () => {
@@ -67,17 +46,17 @@ export function CountryDrawer() {
 					setIsOpen(true)
 				}}
 			>
-				{selectedCountry}
+				<CountryName country={country} />
 			</Button>
-			<DialogContent className='sm:h-auto h-[100svh]'>
-				<div className='mx-auto w-[95%] max-w-sm'>
+			<DialogContent className='sm:h-auto h-[100svh] sm:w-auto w-full '>
+				<div className='mx-auto w-[95%] max-w-sm p-2'>
 					<DialogHeader>
 						<DialogTitle>Convert to Currency</DialogTitle>
 						<DialogDescription>
 							Select currency to compare to Japanese Yen price
 						</DialogDescription>
 					</DialogHeader>
-					<div className='flex flex-col space-y-4 p-2 py-4'>
+					<div className='flex flex-col space-y-4  py-4'>
 						<Input
 							className='text-lg'
 							placeholder='Search for currency...'
@@ -97,20 +76,20 @@ export function CountryDrawer() {
 								ref={countryListContainer}
 							>
 								{filteredCountries.map((c, idx) => (
-									<li key={c.country} className='w-[100%]'>
+									<li key={c} className='w-[100%]'>
 										<Button
 											onClick={() => {
-												setCountry(c.country)
+												setCountry(c)
 												onCloseDrawer()
 											}}
 											size='lg'
 											variant='ghost'
-											className='rounded-none w-[100%] flex items-center text-left justify-between px-2'
+											className='rounded-none w-[100%] flex items-center text-left justify-between px-4'
 										>
-											{c.label}
-											{c.country === country && <CheckIcon />}
+											<CountryName country={c} />
+											{c === country && <CheckIcon />}
 										</Button>
-										{idx < countries.length - 1 && <Separator />}
+										{idx < validCountries.length - 1 && <Separator />}
 									</li>
 								))}
 							</ScrollArea>

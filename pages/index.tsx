@@ -1,12 +1,13 @@
 import { Converter } from '@/components/converter/converter'
 import Page from '@/components/page'
-import Section from '@/components/section'
+import { Separator } from '@/components/ui/separator'
 
 const Index = () => (
 	<Page title='Yen Converter'>
-		<Section>
+		<section className='flex flex-col space-y-8'>
 			<Converter />
-		</Section>
+			<Separator />
+		</section>
 	</Page>
 )
 
