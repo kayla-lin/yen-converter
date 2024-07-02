@@ -46,10 +46,49 @@ export function Converter() {
 		}
 	}, [isRatesLoading])
 
+	useEffect(() => {
+		convertYenFromLocalizedCurrency(localizedAmount)
+	}, [yenRate])
+
 	const onClearConverter = () => {
 		setLocalizedAmount('0')
 		setYenAmount('0')
 		resetCursor()
+	}
+
+	function convertLocalizedCurrencyFromYen(value: string) {
+		if (value.length === 2 && value[0] === '0' && value[1] !== '.') {
+			setYenAmount(value[1])
+		} else {
+			setYenAmount(value)
+		}
+
+		const yen = parseFloat(value)
+		const convertedUSD = yen * yenRate
+
+		setLocalizedAmount(convertedUSD.toFixed(2))
+		if (value.length === 0) {
+			setLocalizedAmount('0')
+			setYenAmount('0')
+		}
+	}
+
+	function convertYenFromLocalizedCurrency(value: string) {
+		if (value.length === 2 && value[0] === '0' && value[1] !== '.') {
+			setLocalizedAmount(value[1])
+		} else {
+			setLocalizedAmount(value)
+		}
+
+		const usd = parseFloat(value)
+		const convertedYen = usd / yenRate
+
+		setYenAmount(convertedYen.toFixed(2))
+
+		if (value.length === 0) {
+			setLocalizedAmount('0')
+			setYenAmount('0')
+		}
 	}
 
 	if (isRatesLoading) {
@@ -86,25 +125,7 @@ export function Converter() {
 								value={yenAmount}
 								onChange={(e) => {
 									const value = e.target.value
-
-									if (
-										value.length === 2 &&
-										value[0] === '0' &&
-										value[1] !== '.'
-									) {
-										setYenAmount(value[1])
-									} else {
-										setYenAmount(value)
-									}
-
-									const yen = parseFloat(value)
-									const convertedUSD = yen * yenRate
-
-									setLocalizedAmount(convertedUSD.toFixed(2))
-									if (value.length === 0) {
-										setLocalizedAmount('0')
-										setYenAmount('0')
-									}
+									convertLocalizedCurrencyFromYen(value)
 								}}
 							/>
 						</div>
@@ -121,26 +142,7 @@ export function Converter() {
 								value={localizedAmount}
 								onChange={(e) => {
 									const value = e.target.value
-
-									if (
-										value.length === 2 &&
-										value[0] === '0' &&
-										value[1] !== '.'
-									) {
-										setLocalizedAmount(value[1])
-									} else {
-										setLocalizedAmount(value)
-									}
-
-									const usd = parseFloat(value)
-									const convertedYen = usd / yenRate
-
-									setYenAmount(convertedYen.toFixed(2))
-
-									if (value.length === 0) {
-										setLocalizedAmount('0')
-										setYenAmount('0')
-									}
+									convertYenFromLocalizedCurrency(value)
 								}}
 							/>
 						</div>
