@@ -22,7 +22,7 @@ const Appbar = () => {
 						<YennyLogo height={20} width='auto' />
 						<h1 className='font-bold'>Yenny</h1>
 					</Link>
-					<nav className='flex items-center space-x-2'>
+					<nav className='flex items-center space-x-4'>
 						{/* <div className='hidden sm:block'>
 							<div className='flex items-center space-x-6'>
 								{links.map(({ label, href }) => (
