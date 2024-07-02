@@ -1,7 +1,7 @@
 {
 	"name": "Yenny | Japanese Yen Converter",
 	"short_name": "Yenny",
-	"description": "Fluffless jasmine rice for those cold winter nights",
+	"description": "Yenny is a Japanese Yen (JPY) converter that can convert Japanese Yen to the US Dollar (USD), Euros (EUR), Great British Pound (GPB), and more currencies.",
 	"icons": [
 		{
 			"src": "/images/icon-192.png",
