@@ -6,7 +6,6 @@ import { buttonVariants } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
 import { GitHubLogoIcon, TwitterLogoIcon } from '@radix-ui/react-icons'
 import { cx } from 'class-variance-authority'
-import { Twitter } from 'lucide-react'
 import Link from 'next/link'
 
 const Recipes = () => (
@@ -85,7 +84,7 @@ const Recipes = () => (
 								'w-[50px] h-[50px]',
 							)}
 						>
-							<Twitter />
+							<TwitterLogoIcon />
 						</Link>
 						<Link
 							href='https://github.com/kayla-lin'
