@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Appbar from '@/components/appbar'
-import BottomNav from '@/components/bottom-nav'
 import { Inter as FontSans } from 'next/font/google'
 import { cn } from '@/lib/utils'
 
@@ -15,8 +14,6 @@ interface Props {
 }
 
 const Page = ({ title, children }: Props) => {
-	const ogImage = `https://www.yenny.app/images/opengraph.png'`
-
 	return (
 		<>
 			{title ? (
@@ -37,8 +34,6 @@ const Page = ({ title, children }: Props) => {
 					<div className='p-8'>{children}</div>
 				</div>
 			</div>
-
-			<BottomNav />
 		</>
 	)
 }

@@ -35,12 +35,12 @@ export default function App({ Component, pageProps }: AppProps) {
 					content='Yenny is a Japanese Yen (JPY) converter that can convert Japanese Yen to the US Dollar (USD), Euros (EUR), Great British Pound (GPB), and any other currency.'
 				/>
 				<meta name='twitter:image' content='https://i.imgur.com/3zwhIGT.png' />
-				<style jsx global>{`
-					:root {
-						--font-inter: ${inter.style.fontFamily};
-					}
-				`}</style>
 			</Head>
+			<style jsx global>{`
+				:root {
+					--font-inter: ${inter.style.fontFamily};
+				}
+			`}</style>
 
 			<PWAPrompt />
 			<ThemeProvider
