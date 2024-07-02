@@ -27,7 +27,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				/>
 				<meta
 					property='og:image'
-					content={`https://www.yenny.app/images/opengraph.png'`}
+					content='https://www.yenny.app/images/opengraph.png'
 				/>
 				<meta name='twitter:card' content='summary_large_image' />
 				<meta property='twitter:domain' content='yenny.app' />
@@ -39,7 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				/>
 				<meta
 					name='twitter:image'
-					content={`https://www.yenny.app/images/opengraph.png'`}
+					content='https://www.yenny.app/images/opengraph.png'
 				/>
 				<style jsx global>{`
 					:root {
