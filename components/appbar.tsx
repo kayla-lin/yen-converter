@@ -4,11 +4,10 @@ import { CountryDrawer } from './country-drawer/country-drawer'
 import { YennyLogo } from './yenny-logo'
 import { useCheckRate } from './converter/use-check-rate'
 import { Skeleton } from './ui/skeleton'
-import { Button, buttonVariants } from './ui/button'
+import { buttonVariants } from './ui/button'
 import { cx } from 'class-variance-authority'
-import { Info } from 'lucide-react'
 import { RenderOnHydrate } from './render-on-hydrate'
-import { ModeToggle } from './mode-toggle'
+import { QuestionMarkCircledIcon } from '@radix-ui/react-icons'
 
 const links = [{ label: 'About', href: '/about' }]
 
@@ -61,7 +60,7 @@ const Appbar = () => {
 								'w-[50px] h-[50px] block sm:hidden',
 							)}
 						>
-							<Info />
+							<QuestionMarkCircledIcon className='w-[50px] h-[50px]' />
 						</Link>
 						<RenderOnHydrate>
 							{isRatesLoading ? <Skeleton /> : <CountryDrawer />}
