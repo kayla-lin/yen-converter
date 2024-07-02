@@ -10,7 +10,7 @@ import { Twitter } from 'lucide-react'
 import Link from 'next/link'
 
 const Recipes = () => (
-	<Page>
+	<Page title='About'>
 		<div className='flex flex-col space-y-8'>
 			<Section>
 				<div className='flex flex-col space-y-4'>
