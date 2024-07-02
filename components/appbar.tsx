@@ -62,9 +62,7 @@ const Appbar = () => {
 						>
 							<QuestionMarkCircledIcon className='w-[50px] h-[50px]' />
 						</Link>
-						<RenderOnHydrate>
-							{isRatesLoading ? <Skeleton /> : <CountryDrawer />}
-						</RenderOnHydrate>
+						{isRatesLoading ? <Skeleton /> : <CountryDrawer />}
 					</nav>
 				</div>
 			</header>
