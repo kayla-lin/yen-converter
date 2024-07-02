@@ -28,16 +28,15 @@ const Recipes = () => (
 			</Section>
 
 			<Section>
-				<h3 className='text-md font-semibold'>Why Yenny</h3>
+				<h3 className='text-lg font-semibold'>Why Yenny?</h3>
 				<ul className='list-disc space-y-2 px-6 py-2'>
-					<li className='text-sm font-medium'>✅ Free to use</li>
-					<li className='text-sm font-medium'>
-						🤯 100% advertisement free forever
+					<li className='text-md font-medium'>
+						✅ Free to use with no advertisements
 					</li>
-					<li className='text-sm font-medium'>
-						🛠 Supports offline mode (No wifi)
+					<li className='text-md font-medium'>
+						🛠 Supports offline mode (No wifi or cellular needed)
 					</li>
-					<li className='text-sm font-medium'>
+					<li className='text-md font-medium'>
 						🌎 Can be downloaded as an application for iOS, Android, and desktop
 					</li>
 				</ul>

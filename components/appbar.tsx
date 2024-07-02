@@ -7,6 +7,7 @@ import { Skeleton } from './ui/skeleton'
 import { Button, buttonVariants } from './ui/button'
 import { cx } from 'class-variance-authority'
 import { Info } from 'lucide-react'
+import { RenderOnHydrate } from './render-on-hydrate'
 
 const links = [{ label: 'About', href: '/about' }]
 
@@ -61,7 +62,9 @@ const Appbar = () => {
 						>
 							<Info />
 						</Link>
-						{isRatesLoading ? <Skeleton /> : <CountryDrawer />}
+						<RenderOnHydrate>
+							{isRatesLoading ? <Skeleton /> : <CountryDrawer />}
+						</RenderOnHydrate>
 					</nav>
 				</div>
 			</header>

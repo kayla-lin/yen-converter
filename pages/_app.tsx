@@ -3,7 +3,6 @@ import { ThemeProvider } from 'next-themes'
 import '@/styles/globals.css'
 import { Inter } from '@next/font/google'
 import { PWAPrompt } from '@/components/pwa-prompt'
-import { RenderOnHydrate } from '@/components/render-on-hydrate'
 
 const inter = Inter({
 	subsets: ['latin'],
@@ -24,9 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
 				disableTransitionOnChange
 			>
 				<main className={`${inter.variable}`}>
-					<RenderOnHydrate>
-						<Component {...pageProps} />
-					</RenderOnHydrate>
+					<Component {...pageProps} />
 				</main>
 			</ThemeProvider>
 		</>
