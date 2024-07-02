@@ -1,129 +1,80 @@
 import React, { useEffect } from 'react'
 import { HistoricalCurrency30Days } from './historical-currency-types'
 import { useHistoryCurrencyStore } from './historical-currency-store'
-import {
-	Bar,
-	BarChart,
-	CartesianGrid,
-	Legend,
-	Line,
-	LineChart,
-	ResponsiveContainer,
-	Tooltip,
-	TooltipProps,
-	XAxis,
-	YAxis,
-} from 'recharts'
 import { useConversionRateStore } from '../converter/rates-store'
-import moment from 'moment'
-import {
-	NameType,
-	ValueType,
-} from 'recharts/types/component/DefaultTooltipContent'
-import {
-	Card,
-	CardContent,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from '../ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '../ui/card'
+import { isCacheOutdated } from '@/util/is-cache-outdated'
+import { useCheckRate } from '../converter/use-check-rate'
+import { useBoolean } from '@/hooks/use-boolean'
+import { CurrencyChart } from './components/currency-chart'
+import { Skeleton } from '../ui/skeleton'
+import { Alert, AlertDescription, AlertTitle } from '../ui/alert'
+import { ExclamationTriangleIcon } from '@radix-ui/react-icons'
+import { Button } from '../ui/button'
 
 const HISTORY_URL = 'https://kayla_lin-getyenpriceblob.web.val.run'
 
 export const HistoricalCurrencyChart = () => {
-	const { setHistory, history } = useHistoryCurrencyStore()
+	const { setHistory, history, lastUpdated } = useHistoryCurrencyStore()
 	const { country } = useConversionRateStore()
+	const { isRatesLoading } = useCheckRate()
+	const isHistoricDataLoading = useBoolean()
+	const isHistoricDataError = useBoolean()
 
-	const CustomTooltip = ({
-		active,
-		payload,
-		label,
-	}: TooltipProps<ValueType, NameType>) => {
-		if (active) {
-			return (
-				<Card>
-					<CardHeader>
-						<CardTitle> {moment(label).format('MMM Do')}</CardTitle>
-						<CardDescription>
-							{`${payload?.[0].value} ${country.toUpperCase()}`}
-						</CardDescription>
-					</CardHeader>
-				</Card>
-			)
+	const isLoading = isRatesLoading || isHistoricDataLoading.value
+	const getHistory = async () => {
+		isHistoricDataLoading.setTrue()
+		try {
+			const historyRes = await fetch(HISTORY_URL)
+			const history: HistoricalCurrency30Days = await historyRes.json()
+			setHistory(history)
+		} catch (e) {
+			console.log(e)
+			isHistoricDataError.setTrue()
 		}
-		return null
+
+		isHistoricDataLoading.setFalse()
 	}
-
 	useEffect(() => {
-		const getHistory = async () => {
-			try {
-				const historyRes = await fetch(HISTORY_URL)
-				const history: HistoricalCurrency30Days = await historyRes.json()
-				setHistory(history)
-			} catch (e) {
-				console.log(e)
-			}
-		}
-		const currentDate = new Date().toISOString().split('T')[0]
-		if (!history || currentDate !== history.lastUpdated) {
+		if (isCacheOutdated(history, lastUpdated)) {
 			getHistory()
 		}
 	}, [])
 
-	const historyChartData = history
-		? getHistoryByCurrency(history, country)
-		: null
-
-	if (!historyChartData) {
-		return <div>error</div>
+	if (isHistoricDataError.value) {
+		return (
+			<Alert variant='destructive'>
+				<div className='flex space-y-4 flex-col items-center justify-center'>
+					<ExclamationTriangleIcon className='h-[30px] w-[30px] ' />
+					<h2 className='text-xl '>Historic chart failed to load</h2>
+					<Button
+						onClick={() => {
+							getHistory()
+							isHistoricDataError.setFalse()
+						}}
+						variant='destructive'
+					>
+						Retry
+					</Button>
+				</div>
+			</Alert>
+		)
 	}
 
 	return (
 		<Card className='md:w-[400px] w-[100%] mx-auto'>
 			<CardHeader>
-				<CardTitle>Past 30 Days of Yen to {country.toUpperCase()}</CardTitle>
+				<CardTitle>Yen to {country.toUpperCase()} from Past 30 Days</CardTitle>
 			</CardHeader>
 			<CardContent className='h-[150px]'>
-				<ResponsiveContainer width='100%' height='100%'>
-					<LineChart data={historyChartData}>
-						<XAxis
-							tick={{ fontSize: '12px' }}
-							dataKey='date'
-							domain={['auto', 'auto']}
-							name='Time'
-							tickFormatter={(unixTime) => moment(unixTime).format('MMM Do')}
-							type='number'
-						/>
-						<Tooltip content={<CustomTooltip />} />
-						<YAxis
-							tick={{ fontSize: '12px' }}
-							dataKey='value'
-							name='Value'
-							domain={['dataMin', 'dataMax']}
-						/>
-						<Line
-							type='monotone'
-							dataKey='value'
-							stroke='hsl(var(--primary))'
-							opacity={0.9}
-						/>
-					</LineChart>
-				</ResponsiveContainer>
+				{isLoading ? (
+					<Skeleton className='w-[100%] h-[100%]' />
+				) : (
+					<>
+						{history && <CurrencyChart history={history} country={country} />}
+					</>
+				)}
 			</CardContent>
 		</Card>
 	)
-}
-
-function getHistoryByCurrency(
-	history: HistoricalCurrency30Days,
-	currency: string,
-) {
-	const currencyHistory = history.data.map((day) => ({
-		date: new Date(day.date).getTime(),
-		value: day.rates.find(
-			(history) => history.targetCurrency === currency.toUpperCase(),
-		)?.exchangeRate,
-	}))
-
-	return currencyHistory
 }

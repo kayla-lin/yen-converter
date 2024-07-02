@@ -4,6 +4,7 @@ import { HistoricalCurrency30Days } from './historical-currency-types'
 
 interface StoreState {
 	history: HistoricalCurrency30Days | null
+	lastUpdated: number | null
 	setHistory: (history: HistoricalCurrency30Days) => void
 }
 
@@ -12,7 +13,10 @@ export const useHistoryCurrencyStore = create<StoreState>()(
 		persist(
 			(set) => ({
 				history: null,
-				setHistory: (by) => set(() => ({ history: by })),
+				lastUpdated: null,
+				setHistory: (by) => {
+					return set(() => ({ history: by, lastUpdated: new Date().getTime() }))
+				},
 			}),
 			{
 				name: 'rate-history-storage',

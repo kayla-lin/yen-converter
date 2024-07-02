@@ -5,10 +5,7 @@ import { YennyLogo } from './yenny-logo'
 import { useCheckRate } from './converter/use-check-rate'
 import { Skeleton } from './ui/skeleton'
 
-const links = [
-	{ label: 'Story', href: '/story' },
-	{ label: 'Recipes', href: '/recipes' },
-]
+const links = [{ label: 'About', href: '/about' }]
 
 const Appbar = () => {
 	const router = useRouter()
@@ -23,24 +20,24 @@ const Appbar = () => {
 						<h1 className='font-bold'>Yenny</h1>
 					</Link>
 					<nav className='flex items-center space-x-6'>
-						{isRatesLoading ? <Skeleton /> : <CountryDrawer />}
 						<div className='hidden sm:block'>
 							<div className='flex items-center space-x-6'>
-								{/* {links.map(({ label, href }) => (
+								{links.map(({ label, href }) => (
 									<Link
 										key={label}
 										href={href}
 										className={`text-sm ${
 											router.pathname === href
-												? 'text-indigo-500 dark:text-indigo-400'
-												: 'text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50'
+												? 'text-primary hover:text-muted-foreground'
+												: 'text-muted-foreground hover:text-primary'
 										}`}
 									>
 										{label}
 									</Link>
-								))} */}
+								))}
 							</div>
 						</div>
+						{isRatesLoading ? <Skeleton /> : <CountryDrawer />}
 					</nav>
 				</div>
 			</header>
