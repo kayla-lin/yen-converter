@@ -56,8 +56,12 @@ export function Converter() {
 		resetCursor()
 	}
 
+	function isZeroValue(value: string) {
+		return value.length === 2 && value[0] === '0' && value[1] !== '.'
+	}
+
 	function convertLocalizedCurrencyFromYen(value: string) {
-		if (value.length === 2 && value[0] === '0' && value[1] !== '.') {
+		if (isZeroValue(value)) {
 			setYenAmount(value[1])
 		} else {
 			setYenAmount(value)
@@ -74,7 +78,7 @@ export function Converter() {
 	}
 
 	function convertYenFromLocalizedCurrency(value: string) {
-		if (value.length === 2 && value[0] === '0' && value[1] !== '.') {
+		if (isZeroValue(value)) {
 			setLocalizedAmount(value[1])
 		} else {
 			setLocalizedAmount(value)
