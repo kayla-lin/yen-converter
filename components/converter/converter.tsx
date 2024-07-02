@@ -69,8 +69,12 @@ export function Converter() {
 
 		const yen = parseFloat(value)
 		const convertedUSD = yen * yenRate
+		if (convertedUSD === 0) {
+			setLocalizedAmount('0')
+		} else {
+			setLocalizedAmount(convertedUSD.toFixed(2))
+		}
 
-		setLocalizedAmount(convertedUSD.toFixed(2))
 		if (value.length === 0) {
 			setLocalizedAmount('0')
 			setYenAmount('0')
@@ -87,7 +91,11 @@ export function Converter() {
 		const usd = parseFloat(value)
 		const convertedYen = usd / yenRate
 
-		setYenAmount(convertedYen.toFixed(2))
+		if (convertedYen === 0) {
+			setYenAmount('0')
+		} else {
+			setYenAmount(convertedYen.toFixed(2))
+		}
 
 		if (value.length === 0) {
 			setLocalizedAmount('0')
