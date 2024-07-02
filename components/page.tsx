@@ -18,7 +18,7 @@ interface Props {
 const Page = ({ title, children }: Props) => {
 	const router = useRouter()
 	const { slug } = router.query
-	const ogImage = '/images/opengraph.png'
+	const ogImage = `${window.location.hostname}/images/opengraph.png'`
 
 	return (
 		<>
