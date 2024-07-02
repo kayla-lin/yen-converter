@@ -39,9 +39,9 @@ const links = [
 		href: '/',
 		icon: <Home />,
 	},
-	{
-		label: 'About',
-		href: '/about',
-		icon: <Info />,
-	},
+	// {
+	// 	label: 'About',
+	// 	href: '/about',
+	// 	icon: <Info />,
+	// },
 ]

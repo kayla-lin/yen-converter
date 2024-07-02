@@ -4,6 +4,9 @@ import { CountryDrawer } from './country-drawer/country-drawer'
 import { YennyLogo } from './yenny-logo'
 import { useCheckRate } from './converter/use-check-rate'
 import { Skeleton } from './ui/skeleton'
+import { Button, buttonVariants } from './ui/button'
+import { cx } from 'class-variance-authority'
+import { Info } from 'lucide-react'
 
 const links = [{ label: 'About', href: '/about' }]
 
@@ -19,8 +22,8 @@ const Appbar = () => {
 						<YennyLogo height={20} width='auto' />
 						<h1 className='font-bold'>Yenny</h1>
 					</Link>
-					<nav className='flex items-center space-x-6'>
-						<div className='hidden sm:block'>
+					<nav className='flex items-center space-x-2'>
+						{/* <div className='hidden sm:block'>
 							<div className='flex items-center space-x-6'>
 								{links.map(({ label, href }) => (
 									<Link
@@ -36,7 +39,28 @@ const Appbar = () => {
 									</Link>
 								))}
 							</div>
-						</div>
+						</div> */}
+						<Link
+							href='/about'
+							className={`hidden sm:block text-sm ${
+								router.pathname === '/about'
+									? 'text-primary hover:text-muted-foreground'
+									: 'text-muted-foreground hover:text-primary'
+							}`}
+						>
+							About
+						</Link>
+						<Link
+							href='/about'
+							className={cx(
+								buttonVariants({
+									variant: 'ghost',
+								}),
+								'w-[50px] h-[50px] block sm:hidden',
+							)}
+						>
+							<Info />
+						</Link>
 						{isRatesLoading ? <Skeleton /> : <CountryDrawer />}
 					</nav>
 				</div>
