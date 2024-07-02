@@ -28,7 +28,7 @@ const Page = ({ title, children }: Props) => (
 				 * Padding top = `appbar` height
 				 * Padding bottom = `bottom-nav` height
 				 */
-				className='min-h-[100svh] bg-background mx-auto max-w-screen-md pt-20 pb-16 px-safe sm:pb-0'
+				className='animate-in fade-in duration-300 min-h-[100svh] bg-background mx-auto max-w-screen-md pt-20 pb-16 px-safe sm:pb-0'
 			>
 				<div className='p-6'>{children}</div>
 			</div>
