@@ -18,11 +18,6 @@ interface Props {
 const Page = ({ title, children }: Props) => {
 	const router = useRouter()
 	const { slug } = router.query
-	const ogTitle = `Yenny | ${slug}`
-	const ogDescription = `Yenny is a Japanese Yen (JPY) converter that can convert Japanese
-						Yen to the US Dollar (USD), Euros (EUR), Great British Pound (GPB),
-						and more currencies.`
-	const ogUrl = `https://yenny.app${router.asPath}`
 	const ogImage = '/images/opengraph.png'
 
 	return (
@@ -30,14 +25,28 @@ const Page = ({ title, children }: Props) => {
 			{title ? (
 				<Head>
 					<title>Yenny | {title}</title>
-					<meta property='og:title' content={ogTitle} />
-					<meta property='og:description' content={ogDescription} />
-					<meta property='og:image' content={ogImage} />
-					<meta property='og:url' content={ogUrl} />
+					<title>Yenny | Japanese Yen Converter</title>
+					<meta
+						name='description'
+						content='Yenny is a Japanese Yen (JPY) converter that can convert Japanese Yen to the US Dollar (USD), Euros (EUR), Great British Pound (GPB), and any other currency.'
+					/>
+					<meta property='og:url' content='https://www.yenny.app/' />
 					<meta property='og:type' content='website' />
-					<meta property='og:image:alt' content='About Yenny' />
+					<meta property='og:title' content='Yenny | Japanese Yen Converter' />
+					<meta
+						property='og:description'
+						content='Yenny is a Japanese Yen (JPY) converter that can convert Japanese Yen to the US Dollar (USD), Euros (EUR), Great British Pound (GPB), and any other currency.'
+					/>
+					<meta property='og:image' content={ogImage} />
+					<meta name='twitter:card' content='summary_large_image' />
+					<meta property='twitter:domain' content='yenny.app' />
+					<meta property='twitter:url' content='https://www.yenny.app/' />
+					<meta name='twitter:title' content='Yenny | Japanese Yen Converter' />
+					<meta
+						name='twitter:description'
+						content='Yenny is a Japanese Yen (JPY) converter that can convert Japanese Yen to the US Dollar (USD), Euros (EUR), Great British Pound (GPB), and any other currency.'
+					/>
 					<meta name='twitter:image' content={ogImage} />
-					<meta property='twitter:image:alt' content='About Yenny' />
 				</Head>
 			) : null}
 			<div className={cn('font-sans antialiased', fontSans.variable)}>
