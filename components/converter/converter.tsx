@@ -118,6 +118,8 @@ export function Converter() {
 							<Input
 								className='text-lg'
 								min={0}
+								inputMode='numeric'
+								pattern='[0-9]*'
 								ref={yenInputRef}
 								id='yen'
 								type='number'
@@ -135,6 +137,8 @@ export function Converter() {
 							</Label>
 							<Input
 								min={0}
+								inputMode='numeric'
+								pattern='[0-9]*'
 								className='text-lg'
 								id='currency-convert-input'
 								type='number'
