@@ -1,3 +1,4 @@
+import { ModeToggle } from '@/components/mode-toggle'
 import Page from '@/components/page'
 import Section from '@/components/section'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -11,6 +12,23 @@ import Link from 'next/link'
 const Recipes = () => (
 	<Page>
 		<div className='flex flex-col space-y-8'>
+			<Section>
+				<div className='flex flex-col space-y-4'>
+					<h2 className='text-xl font-semibold'>Settings</h2>
+					<div className='flex flex-col space-y-2'>
+						<div>
+							<h3 className='text-md font-medium'>Theme Preference</h3>
+							<p className='text-sm text-muted-foreground'>
+								Change to dark and light mode
+							</p>
+						</div>
+						<span>
+							<ModeToggle />
+						</span>
+					</div>
+				</div>
+			</Section>
+			<Separator />
 			<Section>
 				<h2 className='text-xl font-semibold'>Meet Yenny</h2>
 				<div className='mt-2 flex flex-col space-y-8'>
@@ -41,7 +59,6 @@ const Recipes = () => (
 					</li>
 				</ul>
 			</Section>
-			<Separator />
 			<Section>
 				<div className='flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4'>
 					<div className='flex space-x-4'>

@@ -10,9 +10,9 @@ export function YennyLogo(props: SVGProps<SVGSVGElement>) {
 			viewBox='0 0 95 190'
 			{...props}
 		>
-			<path fill='#fff' d='M33.07 0H61.07V28H33.07z'></path>
+			<path fill='hsl(var(--primary))' d='M33.07 0H61.07V28H33.07z'></path>
 			<path
-				fill='#fff'
+				fill='hsl(var(--primary))'
 				fillRule='evenodd'
 				d='M94.14 75H0V53h94.14v22zM94.14 122H0v-22h94.14v22z'
 				clipRule='evenodd'
@@ -32,7 +32,7 @@ export function YennyLogo(props: SVGProps<SVGSVGElement>) {
 					y2='205.848'
 					gradientUnits='userSpaceOnUse'
 				>
-					<stop stopColor='#fff'></stop>
+					<stop stopColor='hsl(var(--primary))'></stop>
 					<stop offset='1' stopColor='#F7F7F7'></stop>
 				</linearGradient>
 			</defs>

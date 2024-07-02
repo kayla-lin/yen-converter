@@ -8,6 +8,7 @@ import { Button, buttonVariants } from './ui/button'
 import { cx } from 'class-variance-authority'
 import { Info } from 'lucide-react'
 import { RenderOnHydrate } from './render-on-hydrate'
+import { ModeToggle } from './mode-toggle'
 
 const links = [{ label: 'About', href: '/about' }]
 
