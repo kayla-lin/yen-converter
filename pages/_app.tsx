@@ -25,10 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					property='og:description'
 					content='Yenny is a Japanese Yen (JPY) converter that can convert Japanese Yen to the US Dollar (USD), Euros (EUR), Great British Pound (GPB), and any other currency.'
 				/>
-				<meta
-					property='og:image'
-					content='https://www.yenny.app/images/opengraph.png'
-				/>
+				<meta property='og:image' content='https://i.imgur.com/3zwhIGT.png' />
 				<meta name='twitter:card' content='summary_large_image' />
 				<meta property='twitter:domain' content='yenny.app' />
 				<meta property='twitter:url' content='https://www.yenny.app/' />
@@ -37,10 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					name='twitter:description'
 					content='Yenny is a Japanese Yen (JPY) converter that can convert Japanese Yen to the US Dollar (USD), Euros (EUR), Great British Pound (GPB), and any other currency.'
 				/>
-				<meta
-					name='twitter:image'
-					content='https://www.yenny.app/images/opengraph.png'
-				/>
+				<meta name='twitter:image' content='https://i.imgur.com/3zwhIGT.png' />
 				<style jsx global>{`
 					:root {
 						--font-inter: ${inter.style.fontFamily};
