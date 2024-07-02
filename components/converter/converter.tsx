@@ -62,7 +62,7 @@ export function Converter() {
 
 	return (
 		<div className='flex flex-col items-center justify-center'>
-			<Card className='md:w-[400px] w-[100%] border-none'>
+			<Card className='md:w-[400px] w-[100%]'>
 				<CardHeader>
 					<CardTitle>Currency Converter</CardTitle>
 					<CardDescription className='flex space-x-1'>

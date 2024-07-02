@@ -1,6 +1,7 @@
 import { useConversionRateStore } from '@/components/converter/rates-store'
 import { useCallback, useEffect, useState } from 'react'
 import { CurrencyRate } from './converter-types'
+import { isCacheOutdated } from '@/util/is-cache-outdated'
 
 export const useCheckRate = () => {
 	const {
@@ -39,12 +40,10 @@ export const useCheckRate = () => {
 	useEffect(() => {
 		const getRate = async () => {
 			setIsRatesLoading(true)
-			const isCacheNotFound =
-				lastUpdated === null || lastUpdated === undefined || yenRates === null
-			const isCacheOutdated =
-				lastUpdated !== null && isMoreThan12Hours(lastUpdated)
 
-			if (isCacheNotFound || isCacheOutdated) {
+			const isOutdated = isCacheOutdated(yenRates, lastUpdated)
+
+			if (isOutdated) {
 				await getCurrentYenPriceFromAPI()
 			} else {
 				updateYenRateFromCache()
@@ -55,18 +54,4 @@ export const useCheckRate = () => {
 	}, [country, yenRates])
 
 	return { isRatesLoading }
-}
-
-function isMoreThan12Hours(lastUpdatedTime: number) {
-	const time1Millis = lastUpdatedTime
-	const time2Millis = new Date().getTime()
-
-	// Calculate the absolute difference in milliseconds
-	const differenceInMillis = Math.abs(time2Millis - time1Millis)
-
-	// Convert milliseconds to hours
-	const differenceInHours = differenceInMillis / (1000 * 60 * 60)
-
-	// Check if the difference is more than 12 hours
-	return differenceInHours > 12
 }
