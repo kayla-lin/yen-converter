@@ -13,6 +13,8 @@ import {
 	DialogTitle,
 } from '../ui/dialog'
 import { CountryName } from '../country-name'
+import { analytics } from '@/service/firebase/firebase'
+import { logEvent } from 'firebase/analytics'
 
 export function CountryDrawer() {
 	const { country, setCountry, validCountries } = useConversionRateStore()
@@ -80,6 +82,12 @@ export function CountryDrawer() {
 										<Button
 											onClick={() => {
 												setCountry(c)
+												if (analytics) {
+													logEvent(analytics, 'select_item', {
+														items: [{ name: `Change currency to ${c}` }],
+													})
+												}
+
 												onCloseDrawer()
 											}}
 											size='lg'

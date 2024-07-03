@@ -4,12 +4,16 @@ import '@/styles/globals.css'
 import { Inter } from '@next/font/google'
 import { PWAPrompt } from '@/components/pwa-prompt'
 import Head from 'next/head'
+import '@/service/firebase/firebase'
+import { useTrackPageView } from '@/service/firebase/use-track-page-view'
 
 const inter = Inter({
 	subsets: ['latin'],
 	variable: '--font-inter',
 })
 export default function App({ Component, pageProps }: AppProps) {
+	useTrackPageView()
+
 	return (
 		<>
 			<Head>

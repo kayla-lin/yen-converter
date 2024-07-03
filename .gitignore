@@ -9,3 +9,5 @@ node_modules
 **/public/sw**
 
 .DS_Store
+
+.env.local
