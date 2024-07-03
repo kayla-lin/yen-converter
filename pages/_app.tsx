@@ -6,7 +6,7 @@ import { PWAPrompt } from '@/components/pwa-prompt'
 import Head from 'next/head'
 import '@/service/firebase/firebase'
 import { useTrackPageView } from '@/service/firebase/use-track-page-view'
-
+import { Analytics } from '@vercel/analytics/react'
 const inter = Inter({
 	subsets: ['latin'],
 	variable: '--font-inter',
@@ -16,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	return (
 		<>
+			<Analytics />
 			<Head>
 				<meta
 					name='viewport'
