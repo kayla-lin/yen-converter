@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button'
 import { useCheckRate } from '@/components/converter/use-check-rate'
 import { useConversionRateStore } from '@/components/converter/rates-store'
 import { Separator } from '../ui/separator'
-import { Banknote, Settings, SlidersVertical } from 'lucide-react'
+import { Banknote } from 'lucide-react'
 import { Skeleton } from '../ui/skeleton'
 import { CountryName } from '../country-name'
 import { useIsCountrySelectOpenStore } from '../country-drawer/is-country-select-open-store'
@@ -124,17 +124,6 @@ export function Converter() {
 							Convert Japanese Yen to {country.toUpperCase()}
 						</CardDescription>
 					</div>
-					<Button
-						aria-label='Settings'
-						variant='ghost'
-						size='icon'
-						className='relative bottom-2'
-						onClick={() => {
-							setIsOpen(true)
-						}}
-					>
-						<SlidersVertical />
-					</Button>
 				</CardHeader>
 				<CardContent className='space-y-4'>
 					<div className='grid grid-cols-2 gap-4'>

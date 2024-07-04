@@ -4,7 +4,7 @@ import { useConversionRateStore } from '../converter/rates-store'
 import { ScrollArea } from '../ui/scroll-area'
 import { Separator } from '../ui/separator'
 import { Input } from '../ui/input'
-import { CheckIcon } from 'lucide-react'
+import { CheckIcon, SlidersVertical } from 'lucide-react'
 import {
 	Dialog,
 	DialogContent,
@@ -56,6 +56,7 @@ export function CountryDrawer() {
 				}}
 			>
 				<CountryName country={country} />
+				<SlidersVertical size='14px' />
 			</Button>
 			<DialogContent className='sm:h-auto h-[100svh] sm:w-auto w-full '>
 				<div className='mx-auto w-[95%] max-w-sm p-2'>
