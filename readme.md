@@ -4,7 +4,7 @@
 </p>
 
 <p align="center">
-<img src="https://pbs.twimg.com/media/GRhOlogWMAAxxKO?format=png&name=900x900" width="200">
+<img src="https://pbs.twimg.com/media/GRhOlogWMAAxxKO?format=png&name=900x900" width="400">
 </p>
 
 <p>Yenny is a Japanese Yen (JPY) converter that can convert Japanese Yen to the US Dollar (USD), Euros (EUR), Great British Pound (GPB), and more currencies.</p>
