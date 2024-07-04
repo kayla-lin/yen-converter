@@ -15,11 +15,12 @@ import {
 import { CountryName } from '../country-name'
 import { analytics } from '@/service/firebase/firebase'
 import { logEvent } from 'firebase/analytics'
+import { useIsCountrySelectOpenStore } from './is-country-select-open-store'
 
 export function CountryDrawer() {
 	const { country, setCountry, validCountries } = useConversionRateStore()
 
-	const [isOpen, setIsOpen] = React.useState<boolean>(false)
+	const { isOpen, setIsOpen } = useIsCountrySelectOpenStore()
 
 	const [countryQuery, setCountryQuery] = React.useState<string>('')
 
@@ -27,9 +28,14 @@ export function CountryDrawer() {
 		c.toLowerCase().includes(countryQuery.toLowerCase()),
 	)
 
+	React.useEffect(() => {
+		if (!isOpen) {
+			setCountryQuery('')
+		}
+	}, [isOpen])
+
 	const onCloseDrawer = () => {
 		setIsOpen(false)
-		setCountryQuery('')
 	}
 
 	const countryListContainer = React.useRef<HTMLDivElement | null>(null)
@@ -44,6 +50,7 @@ export function CountryDrawer() {
 		>
 			<Button
 				variant='outline'
+				className='flex space-x-2'
 				onClick={() => {
 					setIsOpen(true)
 				}}

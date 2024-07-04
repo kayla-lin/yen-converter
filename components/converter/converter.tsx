@@ -15,9 +15,10 @@ import { Button } from '@/components/ui/button'
 import { useCheckRate } from '@/components/converter/use-check-rate'
 import { useConversionRateStore } from '@/components/converter/rates-store'
 import { Separator } from '../ui/separator'
-import { Banknote } from 'lucide-react'
+import { Banknote, Settings } from 'lucide-react'
 import { Skeleton } from '../ui/skeleton'
 import { CountryName } from '../country-name'
+import { useIsCountrySelectOpenStore } from '../country-drawer/is-country-select-open-store'
 
 export function Converter() {
 	const [yenAmount, setYenAmount] = useState('0')
@@ -27,6 +28,8 @@ export function Converter() {
 	const { yenRate, lastUpdated, country } = useConversionRateStore()
 
 	const yenInputRef = useRef<HTMLInputElement | null>(null)
+
+	const { setIsOpen } = useIsCountrySelectOpenStore()
 
 	const { isRatesLoading } = useCheckRate()
 
@@ -114,12 +117,22 @@ export function Converter() {
 	return (
 		<div className='flex flex-col items-center justify-center'>
 			<Card className='md:w-[400px] w-[100%]'>
-				<CardHeader>
-					<CardTitle>Currency Converter</CardTitle>
-					<CardDescription className='flex space-x-1'>
-						<span> Convert Japanese Yen to</span>
-						<CountryName country={country} showEmoji={false} />
-					</CardDescription>
+				<CardHeader className='flex flex-row w-full justify-between items-center'>
+					<div className='w-auto flex flex-col space-y-1'>
+						<CardTitle>Currency Converter</CardTitle>
+						<CardDescription className='flex space-x-1 text-xs'>
+							<span> Convert Japanese Yen to {country.toUpperCase()}</span>
+						</CardDescription>
+					</div>
+					<Button
+						variant='outline'
+						size='icon'
+						onClick={() => {
+							setIsOpen(true)
+						}}
+					>
+						<Settings />
+					</Button>
 				</CardHeader>
 				<CardContent className='space-y-4'>
 					<div className='grid grid-cols-2 gap-4'>
