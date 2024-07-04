@@ -120,13 +120,15 @@ export function Converter() {
 				<CardHeader className='flex flex-row w-full justify-between items-center'>
 					<div className='w-auto flex flex-col space-y-1'>
 						<CardTitle>Currency Converter</CardTitle>
-						<CardDescription className='flex space-x-1 text-xs'>
-							<span> Convert Japanese Yen to {country.toUpperCase()}</span>
+						<CardDescription className='text-xs'>
+							Convert Japanese Yen to {country.toUpperCase()}
 						</CardDescription>
 					</div>
 					<Button
+						aria-label='Settings'
 						variant='outline'
 						size='icon'
+						className='relative bottom-1'
 						onClick={() => {
 							setIsOpen(true)
 						}}

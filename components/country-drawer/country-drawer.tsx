@@ -59,7 +59,7 @@ export function CountryDrawer() {
 			</Button>
 			<DialogContent className='sm:h-auto h-[100svh] sm:w-auto w-full '>
 				<div className='mx-auto w-[95%] max-w-sm p-2'>
-					<DialogHeader>
+					<DialogHeader className='space-y-1'>
 						<DialogTitle>Convert to Currency</DialogTitle>
 						<DialogDescription>
 							Select currency to compare to Japanese Yen price
