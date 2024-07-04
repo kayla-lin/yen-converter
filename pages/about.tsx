@@ -33,7 +33,7 @@ const Recipes = () => (
 				<div className='mt-2 flex flex-col space-y-8'>
 					<p>
 						Yenny is a Japanese Yen (JPY) converter that can convert Japanese
-						Yen to the US Dollar (USD), Euros (EUR), Great British Pound (GPB),
+						Yen to the US Dollar (USD), Euros (EUR), British Pound Sterling (GBP),
 						and more currencies.
 					</p>
 					<p>
