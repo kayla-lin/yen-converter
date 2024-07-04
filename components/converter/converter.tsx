@@ -15,7 +15,7 @@ import { Button } from '@/components/ui/button'
 import { useCheckRate } from '@/components/converter/use-check-rate'
 import { useConversionRateStore } from '@/components/converter/rates-store'
 import { Separator } from '../ui/separator'
-import { Banknote, Settings } from 'lucide-react'
+import { Banknote, Settings, SlidersVertical } from 'lucide-react'
 import { Skeleton } from '../ui/skeleton'
 import { CountryName } from '../country-name'
 import { useIsCountrySelectOpenStore } from '../country-drawer/is-country-select-open-store'
@@ -126,14 +126,14 @@ export function Converter() {
 					</div>
 					<Button
 						aria-label='Settings'
-						variant='outline'
+						variant='ghost'
 						size='icon'
-						className='relative bottom-1'
+						className='relative bottom-2'
 						onClick={() => {
 							setIsOpen(true)
 						}}
 					>
-						<Settings />
+						<SlidersVertical />
 					</Button>
 				</CardHeader>
 				<CardContent className='space-y-4'>
