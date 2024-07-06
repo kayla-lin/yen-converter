@@ -59,7 +59,7 @@ export const CurrencyChart = ({ history, country }: Props) => {
 						<XAxis
 							tick={{ fontSize: '12px' }}
 							dataKey='date'
-							domain={['auto', 'auto']}
+							domain={['dataMin', 'dataMax']}
 							name='Time'
 							tickFormatter={(unixTime) => moment(unixTime).format('MMM Do')}
 							type='number'

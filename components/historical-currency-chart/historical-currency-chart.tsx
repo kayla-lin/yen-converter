@@ -35,6 +35,7 @@ export const HistoricalCurrencyChart = () => {
 
 		isHistoricDataLoading.setFalse()
 	}
+
 	useEffect(() => {
 		if (isCacheOutdated(history, lastUpdated)) {
 			getHistory()
