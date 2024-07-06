@@ -33,8 +33,8 @@ const Recipes = () => (
 				<div className='mt-2 flex flex-col space-y-8'>
 					<p>
 						Yenny is a Japanese Yen (JPY) converter that can convert Japanese
-						Yen to the US Dollar (USD), Euros (EUR), British Pound Sterling (GBP),
-						and more currencies.
+						Yen to the US Dollar (USD), Euros (EUR), British Pound Sterling
+						(GBP), and more currencies.
 					</p>
 					<p>
 						I made Yenny because I was going on vacation in Japan and just
@@ -43,7 +43,6 @@ const Recipes = () => (
 					</p>
 				</div>
 			</Section>
-
 			<Section>
 				<h3 className='text-lg font-semibold'>Why Yenny?</h3>
 				<ul className='list-disc space-y-2 px-6 py-2'>
@@ -57,6 +56,19 @@ const Recipes = () => (
 						🌎 Can be downloaded as an application for iOS, Android, and desktop
 					</li>
 				</ul>
+			</Section>
+			<Section>
+				<a
+					href='https://www.producthunt.com/posts/yenny?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-yenny'
+					target='_blank'
+				>
+					<img
+						src='https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=468146&theme=light'
+						alt='Yenny - Simple&#0032;Japanese&#0032;Yen&#0032;currency&#0032;converter | Product Hunt'
+						width='250'
+						height='54'
+					/>
+				</a>
 			</Section>
 			<Section>
 				<div className='flex flex-col sm:flex-row sm:justify-between sm:items-center space-y-4'>

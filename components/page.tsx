@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Appbar from '@/components/appbar'
+import Appbar from '@/components/appbar/appbar'
 import { Inter as FontSans } from 'next/font/google'
 import { cn } from '@/lib/utils'
 
