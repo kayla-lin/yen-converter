@@ -22,6 +22,18 @@ export default function Document() {
 					name='description'
 					content='Yenny is a Japanese Yen (JPY) converter that can convert Japanese Yen to the US Dollar (USD), Euros (EUR), Great British Pound (GPB), and any other currency.'
 				/>
+				<script
+					dangerouslySetInnerHTML={{
+						__html: `{
+						'@context': 'https://schema.org',
+						'@type': 'WebSite',
+						name: 'Yenny',
+						alternateName: ['Yenny app'],
+						url: 'https://www.yenny.app/',
+						}`,
+					}}
+					type='application/ld+json'
+				></script>
 			</Head>
 			<body>
 				<Main />
