@@ -1,3 +1,5 @@
+'use client'
+
 import React from 'react'
 import {
 	Line,
@@ -5,7 +7,6 @@ import {
 	ResponsiveContainer,
 	Tooltip,
 	TooltipProps,
-	XAxis,
 	YAxis,
 } from 'recharts'
 import { HistoricalCurrency30Days } from '../historical-currency-types'
@@ -13,12 +14,7 @@ import {
 	NameType,
 	ValueType,
 } from 'recharts/types/component/DefaultTooltipContent'
-import {
-	Card,
-	CardDescription,
-	CardHeader,
-	CardTitle,
-} from '@/components/ui/card'
+
 import moment from 'moment'
 
 interface Props {
@@ -26,61 +22,74 @@ interface Props {
 	country: string
 }
 
-export const CurrencyChart = ({ history, country }: Props) => {
-	const historyChartData = history
-		? getHistoryByCurrency(history, country)
-		: null
+import { TrendingUp } from 'lucide-react'
+import { Area, AreaChart, CartesianGrid, XAxis } from 'recharts'
 
-	const CustomTooltip = ({
-		active,
-		payload,
-		label,
-	}: TooltipProps<ValueType, NameType>) => {
-		if (active) {
-			return (
-				<Card>
-					<CardHeader>
-						<CardTitle> {moment(label).format('MMM Do')}</CardTitle>
-						<CardDescription>
-							{`${payload?.[0].value} ${country.toUpperCase()}`}
-						</CardDescription>
-					</CardHeader>
-				</Card>
-			)
-		}
-		return null
-	}
+import {
+	Card,
+	CardContent,
+	CardDescription,
+	CardFooter,
+	CardHeader,
+	CardTitle,
+} from '@/components/ui/card'
+import {
+	ChartConfig,
+	ChartContainer,
+	ChartTooltip,
+	ChartTooltipContent,
+} from '@/components/ui/chart'
+
+const chartConfig = {
+	desktop: {
+		label: 'Desktop',
+		color: 'hsl(var(--chart-1))',
+	},
+} satisfies ChartConfig
+
+export function CurrencyChart({ history, country }: Props) {
+	const historyChartData = getHistoryByCurrency(history, country)
 
 	return (
-		<>
-			{historyChartData && (
-				<ResponsiveContainer width='100%' height='100%'>
-					<LineChart data={historyChartData}>
-						<XAxis
-							tick={{ fontSize: '12px' }}
-							dataKey='date'
-							domain={['dataMin', 'dataMax']}
-							name='Time'
-							tickFormatter={(unixTime) => moment(unixTime).format('MMM Do')}
-							type='number'
-						/>
-						<Tooltip content={<CustomTooltip />} />
-						<YAxis
-							tick={{ fontSize: '12px' }}
-							dataKey='value'
-							name='Value'
-							domain={['dataMin', 'dataMax']}
-						/>
-						<Line
-							type='monotone'
-							dataKey='value'
-							stroke='hsl(var(--primary))'
-							opacity={0.9}
-						/>
-					</LineChart>
-				</ResponsiveContainer>
-			)}
-		</>
+		<ChartContainer config={chartConfig}>
+			<AreaChart
+				accessibilityLayer
+				data={historyChartData}
+				margin={{
+					left: 12,
+					right: 12,
+				}}
+			>
+				<CartesianGrid vertical={false} />
+				<XAxis
+					dataKey='date'
+					tickLine={false}
+					axisLine={false}
+					domain={['dataMin', 'dataMax']}
+					tickMargin={8}
+					type='number'
+					tickFormatter={(unixTime) => moment(unixTime).format('MMM Do')}
+				/>
+				<YAxis
+					tick={{ fontSize: '12px' }}
+					tickLine={false}
+					dataKey='value'
+					name='Value'
+					domain={['dataMin', 'dataMax']}
+				/>
+				<ChartTooltip
+					cursor={false}
+					content={<ChartTooltipContent indicator='line' />}
+				/>
+				<Area
+					dataKey='value'
+					type='natural'
+					fill='var(--color-desktop)'
+					fillOpacity={0.4}
+					stroke='var(--color-desktop)'
+				/>
+			</AreaChart>
+		</ChartContainer>
 	)
 }
 
