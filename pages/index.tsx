@@ -5,7 +5,7 @@ import { RenderOnHydrate } from '@/components/render-on-hydrate'
 
 const Index = () => (
 	<>
-		<h1 className='w-[1px] h-[1px]'>
+		<h1 className='w-[1px] h-[1px] overflow-clip absolute'>
 			Convert any currency to Japanese Yen with beautiful currency converter |
 			Yenny
 		</h1>
